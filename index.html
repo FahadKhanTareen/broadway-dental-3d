@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broadway Dental Studio | 3D Experience — DHA Phase 6, Lahore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0d9488;
+    --teal-light:#2dd4bf;
+    --teal-dark:#0f766e;
+    --gold:#b8934a;
+    --gold-light:#d9b877;
+    --navy:#0b1220;
+    --navy-soft:#111827;
+    --paper:#f3efe4;
+    --paper-2:#ece5d3;
+    --line:rgba(15,23,42,.1);
+    --hairline:rgba(15,23,42,.15);
+    --shadow:0 20px 50px -20px rgba(15,23,42,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  img,svg{display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  section{position:relative;padding:120px 24px;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:20px;
+  }
+  .eyebrow:before{content:"";width:34px;height:1px;background:var(--gold);display:block;}
+  h1,h2,h3,h4{font-family:'Fraunces','Inter',serif;line-height:1.1;letter-spacing:-.01em;}
+  .section-title{font-size:clamp(30px,4.2vw,46px);font-weight:600;color:var(--navy);margin-bottom:16px;}
+  .section-title em{font-style:normal;color:var(--teal-dark);}
+  .section-sub{font-family:'Inter',sans-serif;font-size:16px;color:#57534e;max-width:620px;line-height:1.7;margin-bottom:56px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:100px;
+    font-weight:700;font-size:14px;letter-spacing:.01em;cursor:pointer;border:none;transition:transform .25s ease,box-shadow .25s ease;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1c1508;box-shadow:0 14px 30px -10px rgba(184,147,74,.55);}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 40px -12px rgba(184,147,74,.7);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);}
+  .btn-ghost:hover{background:rgba(255,255,255,.18);transform:translateY(-3px);}
+  .btn-dark{background:var(--navy);color:#fff;}
+  .btn-dark:hover{transform:translateY(-3px);box-shadow:0 16px 30px -14px rgba(11,18,32,.6);}
+  .btn-arrow{width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;font-size:13px;}
+
+  /* ---------- NAV ---------- */
+  #nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px 40px;transition:background .3s ease,box-shadow .3s ease,padding .3s ease;
+  }
+  #nav.scrolled{background:rgba(11,18,32,.72);backdrop-filter:blur(16px);box-shadow:0 6px 24px -10px rgba(15,23,42,.25);padding:14px 40px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:#fff;font-family:'Fraunces',serif;letter-spacing:.01em;}
+  .logo-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;color:#1c1508;font-size:16px;flex-shrink:0;}
+  .nav-links{display:flex;gap:32px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cbd5e1;}
+  .nav-links a{opacity:.85;transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;color:var(--gold-light);}
+  .nav-cta{display:flex;align-items:center;gap:18px;}
+  .nav-phone{font-size:12.5px;font-weight:600;color:#cbd5e1;display:flex;align-items:center;gap:6px;letter-spacing:.03em;}
+  @media(max-width:880px){.nav-links{display:none;}}
+
+  /* ---------- HERO / 3D CANVAS ---------- */
+  #hero{
+    height:100vh;min-height:680px;position:relative;overflow:hidden;
+    background:radial-gradient(120% 100% at 80% 0%,#123a35 0%,var(--navy) 55%,#060a12 100%);
+    display:flex;align-items:center;padding:0 32px;
+  }
+  #hero-canvas{position:absolute;inset:0;z-index:1;}
+  .hero-inner{position:relative;z-index:3;max-width:1180px;margin:0 auto;width:100%;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  @media(max-width:900px){.hero-inner{grid-template-columns:1fr;text-align:left;}}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);color:#e2e8f0;padding:8px 16px;border-radius:100px;
+    font-size:13px;font-weight:600;backdrop-filter:blur(8px);margin-bottom:26px;
+  }
+  .hero-badge b{color:#fbbf24;}
+  #hero h1{font-family:'Fraunces',serif;font-size:clamp(38px,5.4vw,62px);color:#fff;font-weight:500;letter-spacing:-.02em;margin-bottom:24px;}
+  #hero h1 span{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;}
+  #hero p{color:#cbd5e1;font-size:17px;line-height:1.7;max-width:520px;margin-bottom:34px;}
+  #hero p b{color:#f1f5f9;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;}
+  .hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
+  .hero-stat b{display:block;font-size:26px;color:var(--gold-light);font-weight:700;font-family:'Fraunces',serif;}
+  .hero-stat span{font-size:12.5px;color:#94a3b8;letter-spacing:.04em;text-transform:uppercase;}
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;
+    color:#94a3b8;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.8;
+  }
+  .scroll-cue .dot-track{width:2px;height:34px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;}
+  .scroll-cue .dot{width:2px;height:12px;background:var(--teal-light);border-radius:2px;animation:scrollDown 1.8s infinite;}
+  @keyframes scrollDown{0%{transform:translateY(-4px);opacity:0;}30%{opacity:1;}100%{transform:translateY(30px);opacity:0;}}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip{background:var(--navy);padding:22px 24px;}
+  .trust-grid{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+  .trust-item{display:flex;align-items:center;gap:10px;color:#e2e8f0;font-size:13.5px;font-weight:600;}
+  .trust-item .ic{width:34px;height:34px;border-radius:9px;background:rgba(45,212,191,.15);display:flex;align-items:center;justify-content:center;color:var(--teal-light);flex-shrink:0;}
+
+  /* ---------- CARD 3D TILT ---------- */
+  .tilt{transition:transform .12s ease-out,box-shadow .3s ease;will-change:transform;}
+  .tilt-inner{position:relative;}
+
+  /* ---------- CONSULT ---------- */
+  #consult{background:linear-gradient(180deg,#fff,var(--paper));}
+  .consult-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  @media(max-width:900px){.consult-grid{grid-template-columns:1fr;}}
+  .consult-points li{display:flex;gap:14px;margin-bottom:18px;font-size:15.5px;color:#334155;align-items:flex-start;}
+  .consult-points .chk{width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;margin-top:1px;}
+  .form-card{
+    background:#fff;border-radius:24px;padding:36px;box-shadow:var(--shadow);border:1px solid var(--line);
+  }
+  .form-card h3{font-size:20px;margin-bottom:6px;}
+  .form-card .muted{color:#64748b;font-size:13.5px;margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--navy-soft);margin-bottom:7px;}
+  .field input,.field select{
+    width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);font-size:14.5px;
+    background:#fbfdfc;transition:border-color .2s,box-shadow .2s;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.12);}
+  .form-card .btn-primary{width:100%;justify-content:center;margin-top:6px;}
+
+  /* ---------- SERVICES ---------- */
+  #services{background:var(--paper);}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  @media(max-width:1000px){.svc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.svc-grid{grid-template-columns:1fr;}}
+  .svc-card{
+    background:#fff;border-radius:20px;padding:28px 24px;border:1px solid var(--line);
+    box-shadow:0 10px 30px -18px rgba(15,23,42,.25);position:relative;overflow:hidden;
+  }
+  .svc-card .tag{font-size:11.5px;font-weight:700;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;}
+  .svc-icon{
+    width:52px;height:52px;border-radius:14px;margin:14px 0 16px;
+    background:linear-gradient(135deg,var(--teal-light),var(--teal-dark));
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    box-shadow:0 12px 22px -10px rgba(13,148,136,.6);
+  }
+  .svc-card h4{font-size:17.5px;margin-bottom:8px;}
+  .svc-card p{font-size:13.8px;color:#64748b;line-height:1.6;margin-bottom:18px;}
+  .svc-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:#475569;font-weight:600;border-top:1px dashed var(--line);padding-top:14px;}
+  .svc-foot .book{color:var(--teal-dark);font-weight:700;}
+
+  /* ---------- DOCTORS ---------- */
+  #doctors{background:var(--navy);color:#fff;}
+  #doctors .section-sub{color:#94a3b8;}
+  .doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  @media(max-width:900px){.doc-grid{grid-template-columns:1fr;}}
+  .doc-card{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+    border-radius:22px;padding:30px;backdrop-filter:blur(6px);
+  }
+  .doc-avatar{
+    width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:26px;font-weight:800;color:#fff;margin-bottom:20px;
+    background:conic-gradient(from 200deg,var(--teal-light),#3b82f6,var(--teal));
+    box-shadow:0 0 0 4px rgba(255,255,255,.06),0 20px 40px -18px rgba(13,148,136,.6);
+  }
+  .doc-card h4{font-size:19px;margin-bottom:4px;}
+  .doc-exp{font-size:12.5px;color:var(--teal-light);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em;}
+  .doc-role{font-size:13.5px;color:#cbd5e1;font-weight:600;margin-bottom:12px;}
+  .doc-card p.bio{font-size:13.6px;color:#94a3b8;line-height:1.65;}
+
+  /* ---------- REVIEWS ---------- */
+  #reviews{background:var(--paper);}
+  .rev-scale{display:flex;align-items:center;gap:20px;margin-bottom:44px;flex-wrap:wrap;}
+  .rev-score{font-size:52px;font-weight:800;color:var(--navy);}
+  .stars{color:#f59e0b;font-size:18px;letter-spacing:2px;}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.rev-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.rev-grid{grid-template-columns:1fr;}}
+  .rev-card{background:#fff;border-radius:18px;padding:24px;border:1px solid var(--line);box-shadow:0 10px 26px -18px rgba(15,23,42,.25);}
+  .rev-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .rev-ava{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--teal-light),var(--teal-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+  .rev-name{font-size:14px;font-weight:700;}
+  .rev-meta{font-size:11.5px;color:#94a3b8;}
+  .rev-card p{font-size:13.8px;color:#475569;line-height:1.6;margin-bottom:12px;}
+  .rev-topic{display:inline-block;font-size:11px;background:rgba(13,148,136,.09);color:var(--teal-dark);padding:4px 10px;border-radius:100px;font-weight:700;}
+
+  /* ---------- GALLERY (stylized, no external photos) ---------- */
+  #gallery{background:#fff;}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.gal-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.gal-grid{grid-template-columns:1fr;}}
+  .gal-card{
+    aspect-ratio:4/3;border-radius:20px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;
+    box-shadow:0 16px 34px -18px rgba(15,23,42,.4);
+  }
+  .gal-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.7));}
+  .gal-card .gtag{position:relative;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;opacity:.8;margin-bottom:6px;color:var(--gold-light);}
+  .gal-card h5{position:relative;font-family:'Fraunces',serif;font-size:19px;font-weight:500;}
+  .gal-card .gicon{position:absolute;top:18px;right:20px;font-family:'Fraunces',serif;font-size:14px;color:rgba(255,255,255,.65);letter-spacing:.02em;}
+
+  /* ---------- LOCATION ---------- */
+  #location{background:var(--paper);}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  @media(max-width:900px){.loc-grid{grid-template-columns:1fr;}}
+  .hours-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line);}
+  .hours-table td{padding:13px 18px;font-size:14px;border-bottom:1px solid var(--line);}
+  .hours-table tr:last-child td{border-bottom:none;}
+  .hours-table td:first-child{font-weight:700;color:var(--navy-soft);}
+  .hours-table tr.today{background:rgba(13,148,136,.06);}
+  .hours-table td:last-child{text-align:right;color:#475569;}
+  .amenity-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+  .amenity-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:13.5px;color:#475569;line-height:1.7;}
+  .amenity-box b{display:block;color:var(--navy);font-size:13.5px;margin-bottom:4px;}
+  .map-card{background:var(--navy);border-radius:22px;padding:34px;color:#fff;height:100%;position:relative;overflow:hidden;}
+  .map-card .pin{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--teal-light),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;}
+  .map-card h4{font-size:20px;margin-bottom:10px;}
+  .map-card p{color:#cbd5e1;font-size:14.5px;line-height:1.7;margin-bottom:24px;}
+  .map-card .row{display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid rgba(255,255,255,.1);font-size:13.5px;}
+  .map-card .row b{color:#fff;}
+  .map-card .row span{color:#94a3b8;}
+
+  /* ---------- WHY CHOOSE US (numbered, editorial) ---------- */
+  #why{background:var(--navy);color:#fff;overflow:hidden;}
+  #why:before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;
+    background:radial-gradient(circle,rgba(184,147,74,.16),transparent 65%);pointer-events:none;}
+  .why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;position:relative;z-index:1;}
+  @media(max-width:900px){.why-grid{grid-template-columns:1fr;}}
+  .why-head h2{color:#fff;font-size:clamp(30px,4.4vw,48px);}
+  .why-head h2 em{font-style:italic;color:var(--gold-light);}
+  .reason{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:28px 0;border-top:1px solid rgba(255,255,255,.12);}
+  .reason:last-child{border-bottom:1px solid rgba(255,255,255,.12);}
+  .reason .num{font-family:'Fraunces',serif;font-size:15px;color:var(--gold-light);font-weight:600;padding-top:3px;}
+  .reason h4{font-family:'Fraunces',serif;font-weight:500;font-size:21px;margin-bottom:8px;color:#fff;}
+  .reason p{font-size:14px;color:#a8b0bf;line-height:1.7;max-width:480px;}
+
+  /* ---------- FAQ ---------- */
+  #faq{background:#fff;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;padding:22px 4px;cursor:pointer;
+    font-weight:700;font-size:15.5px;color:var(--navy);
+  }
+  .faq-q .plus{width:26px;height:26px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--teal-dark);transition:transform .3s;flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg);background:var(--teal);color:#fff;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{padding:0 4px 22px;font-size:14.3px;color:#64748b;line-height:1.7;max-width:760px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy);color:#94a3b8;padding:60px 24px 30px;}
+  .foot-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  @media(max-width:800px){.foot-grid{grid-template-columns:1fr;}}
+  .foot-grid h5{color:#fff;font-size:14.5px;margin-bottom:16px;}
+  .foot-grid li{margin-bottom:10px;font-size:13.8px;}
+  .foot-grid a:hover{color:var(--teal-light);}
+  .foot-bottom{max-width:1180px;margin:0 auto;border-top:1px solid rgba(255,255,255,.08);padding-top:24px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- WHATSAPP FAB ---------- */
+  #wa-fab{
+    position:fixed;bottom:26px;right:26px;z-index:90;width:58px;height:58px;border-radius:50%;
+    background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;
+    box-shadow:0 14px 30px -10px rgba(37,211,102,.7);cursor:pointer;animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 0 0 16px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- ENTER GATE ---------- */
+  body.gate-active{overflow:hidden;height:100vh;}
+  #enter-gate{
+    position:fixed;inset:0;z-index:1000;overflow:hidden;
+    background:radial-gradient(120% 100% at 50% 0%,#123a35 0%,var(--navy) 55%,#060a12 100%);
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity .9s ease, visibility .9s ease;
+  }
+  #enter-gate.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+  #enter-gate .beam{
+    position:absolute;top:50%;left:50%;width:900px;height:900px;transform:translate(-50%,-50%);
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(184,147,74,.14) 35deg, transparent 95deg, transparent 360deg);
+    animation:gateSpin 9s linear infinite;pointer-events:none;
+  }
+  @keyframes gateSpin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+  #enter-gate .stars{position:absolute;inset:0;opacity:.5;
+    background-image:radial-gradient(1px 1px at 20% 30%,#fff,transparent),radial-gradient(1px 1px at 70% 60%,#fff,transparent),
+      radial-gradient(1px 1px at 40% 80%,#fff,transparent),radial-gradient(1px 1px at 85% 20%,#fff,transparent),
+      radial-gradient(1px 1px at 60% 45%,#fff,transparent),radial-gradient(1px 1px at 10% 65%,#fff,transparent);
+    background-size:100% 100%;}
+  .gate-inner{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;padding:24px;}
+  .gate-mark{
+    width:60px;height:60px;border-radius:16px;margin-bottom:16px;
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;
+    font-size:28px;color:#1c1508;box-shadow:0 20px 50px -16px rgba(184,147,74,.65);
+    animation:gateFloat 4s ease-in-out infinite;
+  }
+  @keyframes gateFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+  .gate-word{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(30px,5.2vw,54px);color:#fff;letter-spacing:.01em;line-height:1.05;}
+  .gate-sub{font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-top:14px;}
+  .gate-tagline{font-size:13.5px;color:#94a3b8;margin-top:10px;letter-spacing:.02em;}
+  .gate-loader{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:34px;width:220px;}
+  .gate-bar{width:100%;height:2px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden;}
+  .gate-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold-light),var(--gold));}
+  .gate-percent{font-size:11px;letter-spacing:.15em;color:#7c8798;font-weight:600;}
+  .gate-cta{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:30px;opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;}
+  .gate-cta.show{opacity:1;transform:translateY(0);}
+  .gate-hint{font-size:11px;color:#64748b;letter-spacing:.05em;animation:gateBlink 2.2s infinite;}
+  @keyframes gateBlink{0%,100%{opacity:.45;}50%{opacity:1;}}
+</style>
+</head>
+<body class="gate-active">
+
+<div id="enter-gate">
+  <div class="stars"></div>
+  <div class="beam"></div>
+  <div class="gate-inner">
+    <div class="gate-mark">◐</div>
+    <div class="gate-word">Broadway Dental</div>
+    <div class="gate-sub">Studio</div>
+    <div class="gate-tagline">DHA Phase 6 · Lahore</div>
+    <div class="gate-loader" id="gateLoader">
+      <div class="gate-bar"><div class="gate-bar-fill" id="gateBarFill"></div></div>
+      <div class="gate-percent" id="gatePercent">Preparing your visit… 0%</div>
+    </div>
+    <div class="gate-cta" id="gateCta">
+      <button class="btn btn-primary" id="gateEnterBtn">Enter Studio<span class="btn-arrow">→</span></button>
+      <div class="gate-hint">or press any key</div>
+    </div>
+  </div>
+</div>
+
+<nav id="nav">
+  <div class="logo"><div class="logo-mark">◐</div>Broadway Dental</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#location">Location</a>
+    <a href="#faq">FAQs</a>
+  </div>
+  <div class="nav-cta">
+    <span class="nav-phone">📞 0302 4598459</span>
+    <a href="#consult"><button class="btn btn-primary" style="padding:10px 10px 10px 20px;font-size:12.5px;">Book a Consult<span class="btn-arrow">→</span></button></a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow" style="color:#e2c98a;">Broadway Dental Studio</div>
+      <h1>Gentle, modern &amp;<br><span>empathetic</span> dental care<br>in DHA Phase 6</h1>
+      <p>Led by <b>Dr. Faizan Haroon</b> &amp; <b>Dr. Abir</b> — painless rotary root canals, fear‑free pediatric care, wisdom tooth removals, and precision smile aesthetics, in a spotless clinical environment.</p>
+      <div class="hero-actions">
+        <a href="#booking"><button class="btn btn-primary">Book an Appointment<span class="btn-arrow">→</span></button></a>
+        <a href="#consult"><button class="btn btn-ghost">Free Smile Assessment</button></a>
+      </div>
+      <div class="hero-badge" style="margin-bottom:0;">⭐ <b>4.7</b>&nbsp;rating · 40 verified Google reviews</div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>10+ yrs</b><span>Lead Clinician</span></div>
+        <div class="hero-stat"><b>40+</b><span>Verified Reviews</span></div>
+        <div class="hero-stat"><b>100%</b><span>Autoclave Sterilized</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll<div class="dot-track"><div class="dot"></div></div></div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-grid">
+    <div class="trust-item"><div class="ic">👶</div>Pediatric Friendly</div>
+    <div class="trust-item"><div class="ic">♿</div>Wheelchair Restroom</div>
+    <div class="trust-item"><div class="ic">💳</div>Cards &amp; NFC Pay</div>
+    <div class="trust-item"><div class="ic">🕊️</div>Zero Pressure Advice</div>
+  </div>
+</div>
+
+<!-- ================= CONSULT ================= -->
+<section id="consult">
+  <div class="wrap consult-grid">
+    <div class="reveal">
+      <span class="eyebrow">Complimentary Patient Service</span>
+      <h2 class="section-title">Claim Your Free Smile Assessment</h2>
+      <p class="section-sub" style="margin-bottom:30px;">We believe everyone deserves transparent, pressure‑free advice before committing to any treatment. Meet Dr. Faizan or Dr. Abir for an honest review of your oral health.</p>
+      <ul class="consult-points">
+        <li><span class="chk">✓</span>Comprehensive visual tooth &amp; gum inspection</li>
+        <li><span class="chk">✓</span>Honest advice — zero pressure for unnecessary procedures</li>
+        <li><span class="chk">✓</span>Pediatric fear‑free evaluation for children</li>
+        <li><span class="chk">✓</span>Clear treatment timeline &amp; transparent fee estimate</li>
+        <li><span class="chk">✓</span>100% confidential &amp; no obligation</li>
+      </ul>
+    </div>
+    <div class="form-card reveal" id="booking">
+      <h3>Book Your Free Consultation</h3>
+      <p class="muted">Takes 30 seconds · No advance deposit required</p>
+      <form onsubmit="event.preventDefault();alert('Thanks! This is a visual concept demo — no data is sent. Call 03024598459 to book for real.');">
+        <div class="field"><label>Patient Full Name *</label><input required placeholder="e.g. Ayesha Khan"></div>
+        <div class="field"><label>Mobile Phone Number *</label><input required placeholder="03XX XXXXXXX"></div>
+        <div class="field">
+          <label>Primary Dental Concern</label>
+          <select>
+            <option>General Smile Assessment &amp; Checkup</option>
+            <option>Tooth Pain / Possible Root Canal</option>
+            <option>Wisdom Tooth Discomfort or Swelling</option>
+            <option>Teeth Discoloration &amp; Aesthetics</option>
+            <option>Pediatric Dental Care for My Child</option>
+            <option>Braces / Alignment Consultation</option>
+            <option>Scaling, Polishing &amp; Gum Health</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Request Complimentary Consultation</button>
+      </form>
+      <p class="muted" style="margin-top:16px;text-align:center;">Or call us immediately at <b style="color:var(--teal-dark);">03024598459</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <span class="eyebrow reveal">Specialized Dentistry in Lahore</span>
+    <h2 class="section-title reveal">Comprehensive Treatments &amp; Aesthetic Care</h2>
+    <p class="section-sub reveal">From pain‑free rotary root canals to pediatric dental phobia relief and brilliant smile makeovers.</p>
+    <div class="svc-grid" id="svc-grid"></div>
+  </div>
+</section>
+
+<!-- ================= DOCTORS ================= -->
+<section id="doctors">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="color:var(--teal-light);">Clinical Faculty</span>
+    <h2 class="section-title reveal" style="color:#fff;">Meet Your Specialists</h2>
+    <p class="section-sub reveal">Sector J, DHA Phase 6, Lahore.</p>
+    <div class="doc-grid" id="doc-grid"></div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section id="why">
+  <div class="wrap why-grid">
+    <div class="why-head reveal">
+      <span class="eyebrow" style="color:var(--gold-light);">Why patients stay</span>
+      <h2>Three reasons<br>to <em>choose us.</em></h2>
+      <p class="section-sub" style="color:#94a3b8;margin-top:18px;margin-bottom:0;">Ten years of gentle, transparent dentistry in Sector J — built one honest consultation at a time.</p>
+    </div>
+    <div class="reveal">
+      <div class="reason">
+        <div class="num">01</div>
+        <div><h4>One team, start to finish.</h4><p>No handoffs. Dr. Faizan or Dr. Abir plans your treatment, performs it, and follows up personally — one face throughout your care, not an assembly line.</p></div>
+      </div>
+      <div class="reason">
+        <div class="num">02</div>
+        <div><h4>Zero‑pressure, honest advice.</h4><p>Every visit starts with a free smile assessment and a transparent fee estimate. We only recommend the treatment you actually need.</p></div>
+      </div>
+      <div class="reason">
+        <div class="num">03</div>
+        <div><h4>Gentle with the ones who fear it most.</h4><p>Fear‑free pediatric technique and painless rotary root canals, refined over 10+ years — even the most anxious patients leave calm.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section id="reviews">
+  <div class="wrap">
+    <span class="eyebrow reveal">Verified Google Reviews</span>
+    <h2 class="section-title reveal">Patient Experiences</h2>
+    <div class="rev-scale reveal">
+      <div class="rev-score">4.7</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div style="font-size:13.5px;color:#64748b;font-weight:600;">Based on 40 Google reviews</div>
+      </div>
+    </div>
+    <div class="rev-grid" id="rev-grid"></div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="wrap">
+    <span class="eyebrow reveal">Studio Tour &amp; Facilities</span>
+    <h2 class="section-title reveal">Broadway Dental Studio Gallery</h2>
+    <p class="section-sub reveal">Our 2nd‑floor clinic in Sector J — sterile operatories, modern chairs, child‑friendly corners, and a dedicated sterilization suite.</p>
+    <div class="gal-grid" id="gal-grid"></div>
+  </div>
+</section>
+
+<!-- ================= LOCATION ================= -->
+<section id="location">
+  <div class="wrap loc-grid">
+    <div class="reveal">
+      <span class="eyebrow">Location, Hours &amp; Amenities</span>
+      <h2 class="section-title">Visit Broadway Dental Studio</h2>
+      <table class="hours-table">
+        <tr><td>Sunday</td><td>Closed</td></tr>
+        <tr><td>Monday</td><td>4:00 PM – 9:00 PM</td></tr>
+        <tr><td>Tuesday</td><td>4:00 PM – 9:00 PM</td></tr>
+        <tr><td>Wednesday</td><td>4:00 PM – 9:00 PM</td></tr>
+        <tr><td>Thursday</td><td>4:00 PM – 9:00 PM</td></tr>
+        <tr class="today"><td>Friday — Today</td><td>3:00 PM – 8:30 PM</td></tr>
+        <tr><td>Saturday</td><td>3:00 PM – 9:00 PM</td></tr>
+      </table>
+      <div class="amenity-grid">
+        <div class="amenity-box"><b>Accessibility</b>Wheelchair accessible restroom · Elevator access to 2nd floor</div>
+        <div class="amenity-box"><b>Offerings</b>Pediatric dental care · Rotary root canals &amp; aesthetics</div>
+        <div class="amenity-box"><b>Amenities</b>Clean restroom · Air‑conditioned patient lounge</div>
+        <div class="amenity-box"><b>Payments</b>Debit &amp; credit cards · NFC mobile payments</div>
+      </div>
+    </div>
+    <div class="map-card reveal">
+      <div class="pin">📍</div>
+      <h4>Clinic Location</h4>
+      <p>2nd Floor, 243 MB, Sector J, DHA Phase 6, Lahore, Pakistan — Commercial Broadway (MB) area, dedicated elevator access.</p>
+      <a href="tel:03024598459"><button class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">Call the Clinic</button></a>
+      <a href="https://wa.me/923024598459" target="_blank" rel="noopener"><button class="btn btn-ghost" style="width:100%;justify-content:center;">WhatsApp Booking</button></a>
+      <div class="row"><span>Direct Line</span><b>0302 4598459</b></div>
+      <div class="row"><span>Rating</span><b>4.7 ★ (40 reviews)</b></div>
+      <div class="row"><span>Floor</span><b>2nd Floor, 243 MB</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap" style="max-width:860px;">
+    <span class="eyebrow reveal">Got Questions?</span>
+    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <div id="faq-list"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="logo" style="color:#fff;margin-bottom:14px;">
+        <div class="logo-mark">◐</div>Broadway Dental Studio
+      </div>
+      <p style="font-size:13.8px;line-height:1.7;max-width:320px;">2nd Floor, 243 MB, Sector J, DHA Phase 6, Lahore, Pakistan. Gentle, modern, evidence‑based dental care for the whole family.</p>
+    </div>
+    <div>
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#gallery">Studio Gallery</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul>
+        <li>📞 03024598459</li>
+        <li>💬 WhatsApp: +92 302 4598459</li>
+        <li>🕐 Mon–Thu 4–9 PM · Fri 3–8:30 PM</li>
+        <li>🕐 Sat 3–9 PM · Sun Closed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Broadway Dental Studio — DHA Phase 6, Lahore.</span>
+    <span>Concept 3D redesign · built with Three.js</span>
+  </div>
+</footer>
+
+<a id="wa-fab" href="https://wa.me/923024598459" target="_blank" rel="noopener" title="WhatsApp Us">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+/* ===================== ENTER GATE ===================== */
+(function(){
+  try{
+    const gate=document.getElementById('enter-gate');
+    if(!gate) return;
+
+    // Skip the gate on repeat visits within the same browser tab session.
+    let alreadyEntered=false;
+    try{ alreadyEntered = sessionStorage.getItem('bwd_entered')==='1'; }catch(e){}
+    if(alreadyEntered){ gate.remove(); document.body.classList.remove('gate-active'); return; }
+
+    const fill=document.getElementById('gateBarFill');
+    const pct=document.getElementById('gatePercent');
+    const cta=document.getElementById('gateCta');
+    const loader=document.getElementById('gateLoader');
+    const btn=document.getElementById('gateEnterBtn');
+
+    function exitGate(){
+      gate.classList.add('hidden');
+      document.body.classList.remove('gate-active');
+      try{ sessionStorage.setItem('bwd_entered','1'); }catch(e){}
+      window.removeEventListener('keydown', onKey);
+    }
+    function onKey(){ exitGate(); }
+
+    let p=0;
+    const timer=setInterval(()=>{
+      p+=100/(1400/40);
+      const shown=Math.min(100, Math.round(p));
+      if(fill) fill.style.width=shown+'%';
+      if(pct) pct.textContent='Preparing your visit… '+shown+'%';
+      if(p>=100){
+        clearInterval(timer);
+        if(loader) loader.style.display='none';
+        if(cta) cta.classList.add('show');
+      }
+    },40);
+
+    // Fail-open: never trap the visitor behind the gate.
+    setTimeout(()=>{ if(cta && !cta.classList.contains('show')) cta.classList.add('show'); if(loader) loader.style.display='none'; }, 3500);
+    setTimeout(exitGate, 15000);
+
+    if(btn) btn.addEventListener('click', exitGate);
+    gate.addEventListener('click',(e)=>{ if(e.target===gate) exitGate(); });
+    window.addEventListener('keydown', onKey);
+  }catch(err){
+    const g=document.getElementById('enter-gate');
+    if(g) g.remove();
+    document.body.classList.remove('gate-active');
+  }
+})();
+
+/* ===================== CONTENT DATA ===================== */
+const SERVICES = [
+  {tag:"Endodontics", icon:"🦷", name:"Root Canal Treatment", desc:"Painless rotary root canal therapy to relieve acute toothaches and preserve natural tooth structure.", time:"45–60 mins"},
+  {tag:"Oral Surgery", icon:"🩺", name:"Wisdom Tooth Removal", desc:"Safe, atraumatic extraction of impacted or painful third molars under comfortable local anesthesia.", time:"30–50 mins"},
+  {tag:"Preventative & Hygiene", icon:"✨", name:"Scaling & Polishing", desc:"Ultrasonic scaling to remove tartar and stains, finished with high‑gloss micro‑polishing.", time:"30–45 mins"},
+  {tag:"Cosmetic", icon:"😁", name:"Teeth Whitening & Aesthetics", desc:"In‑studio clinical laser whitening and aesthetic restorations for a radiant, confident smile.", time:"45 mins"},
+  {tag:"Children Dentistry", icon:"🧸", name:"Pediatric Dental Care", desc:"Patient, gentle, trauma‑free visits for children — painless fillings, fluoride varnish, phobia relief.", time:"30 mins"},
+  {tag:"Restorative", icon:"🛡️", name:"Fillings & Zirconia Crowns", desc:"Biocompatible composite fillings and durable porcelain/zirconia crowns that look completely natural.", time:"45 mins"},
+  {tag:"Orthodontics", icon:"📐", name:"Braces & Clear Aligners", desc:"Precision orthodontic planning with Dr. Abir to correct misalignment, spacing, and bite issues.", time:"30 min consult"},
+  {tag:"Diagnosis", icon:"🔍", name:"Comprehensive Checkup", desc:"Full digital mouth exam, intraoral camera check, periodontal screening, transparent treatment plan.", time:"20–30 mins"},
+];
+
+const DOCTORS = [
+  {initials:"FH", name:"Dr. Faizan Haroon", exp:"10+ Years Experience", role:"Restorative, Aesthetic & Pediatric Dentistry", bio:"Renowned for his gentle touch, thorough diagnostics, and empathetic patient care — praised for painless root canals and calming children who fear the dentist."},
+  {initials:"A", name:"Dr. Abir", exp:"9+ Years Experience", role:"Orthodontics & Comprehensive Dental Care", bio:"Dedicated specialist focused on tooth preservation, braces, and cosmetic alignment, known for building customized long‑term treatment plans."},
+  {initials:"F", name:"Dr. Fareed", exp:"8+ Years Experience", role:"Oral Surgery & Maxillofacial Specialist", bio:"Expert in complex wisdom tooth surgical removals and atraumatic extractions with minimal recovery downtime."},
+];
+
+const REVIEWS = [
+  {name:"Mahad Ali Sajid", meta:"Verified Patient · 7 mo ago", topic:"Professional Dentist", text:"By far the most transparent, easy to understand, and friendly experience with Dr. Faizan."},
+  {name:"Sheza Rasul", meta:"7 reviews · 5 mo ago", topic:"Aesthetics", text:"A thorough professional — knew exactly how to fix my discoloration, strong grip on aesthetics."},
+  {name:"Mona Javed", meta:"Local Guide · 7 mo ago", topic:"Clean Environment", text:"Very professional, friendly and honest — no pressure for unnecessary treatments."},
+  {name:"Eshal Muzaffar", meta:"8 reviews · 1 yr ago", topic:"Clean Environment", text:"Hands down one of the best dental clinics in Lahore, diverse team of specialists."},
+  {name:"Anosha Imran", meta:"Local Guide · 1 yr ago", topic:"Gentle Touch", text:"So good with kids — my daughter's phobia melted away during her fillings visit."},
+  {name:"Kiran Iqbal", meta:"7 reviews · 1 yr ago", topic:"Empathy", text:"Dr. Faizan behaved like an absolute gem with my daughter — super smooth procedure."},
+];
+
+const GALLERY = [
+  {tag:"Treatment Operatory", title:"Modern Dental Operatory & Ergonomic Chair", icon:"🦷", g1:"#0f766e", g2:"#134e4a"},
+  {tag:"Reception & Lounge", title:"Warm & Calming Reception Lounge", icon:"🛋️", g1:"#1d4ed8", g2:"#0f172a"},
+  {tag:"Sterilization", title:"Hospital‑Grade Autoclave Station", icon:"🧴", g1:"#0d9488", g2:"#0b3b36"},
+  {tag:"Radiography", title:"Digital High‑Resolution Radiography", icon:"📡", g1:"#7c3aed", g2:"#1e1b4b"},
+  {tag:"Pediatric Care", title:"Child‑Friendly Atmosphere", icon:"🧸", g1:"#ea580c", g2:"#7c2d12"},
+  {tag:"Aesthetics", title:"Smile Studio & Whitening Suite", icon:"✨", g1:"#0ea5e9", g2:"#0c4a6e"},
+];
+
+const FAQS = [
+  {q:"Where is Broadway Dental Studio located in Lahore?", a:"2nd Floor, 243 MB, Sector J, DHA Phase 6, Lahore, Pakistan (Commercial Broadway MB area). Elevator access is available to the 2nd floor."},
+  {q:"What are your clinic working hours?", a:"Mon–Thu 4:00 PM–9:00 PM, Fri 3:00 PM–8:30 PM, Sat 3:00 PM–9:00 PM. Closed on Sunday."},
+  {q:"How do I book an appointment or claim a Free Consultation?", a:"Use the booking form above, call, or WhatsApp us at 03024598459 — most requests are confirmed the same day."},
+  {q:"Is root canal treatment painful at Broadway Dental Studio?", a:"We use gentle rotary root canal technique with advanced anesthesia so the procedure is designed to be pain‑free."},
+  {q:"How do you handle young children who are terrified of the dentist?", a:"Dr. Faizan specializes in fear‑free pediatric visits — gentle communication, fun goodie bags, and a calm, patient approach."},
+  {q:"What payment methods do you accept at the clinic?", a:"Debit cards, credit cards, and NFC mobile payments are all accepted."},
+];
+
+/* ===================== RENDER CONTENT ===================== */
+function el(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstChild;}
+
+const svcGrid=document.getElementById('svc-grid');
+SERVICES.forEach(s=>{
+  svcGrid.appendChild(el(`
+    <div class="svc-card tilt reveal">
+      <div class="tilt-inner">
+        <div class="tag">${s.tag}</div>
+        <div class="svc-icon">${s.icon}</div>
+        <h4>${s.name}</h4>
+        <p>${s.desc}</p>
+        <div class="svc-foot"><span>⏱ ${s.time}</span><span class="book">Book Slot →</span></div>
+      </div>
+    </div>`));
+});
+
+const docGrid=document.getElementById('doc-grid');
+DOCTORS.forEach(d=>{
+  docGrid.appendChild(el(`
+    <div class="doc-card tilt reveal">
+      <div class="tilt-inner">
+        <div class="doc-avatar">${d.initials}</div>
+        <h4>${d.name}</h4>
+        <div class="doc-exp">${d.exp}</div>
+        <div class="doc-role">${d.role}</div>
+        <p class="bio">${d.bio}</p>
+      </div>
+    </div>`));
+});
+
+const revGrid=document.getElementById('rev-grid');
+REVIEWS.forEach(r=>{
+  const ini=r.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  revGrid.appendChild(el(`
+    <div class="rev-card reveal">
+      <div class="rev-top">
+        <div class="rev-ava">${ini}</div>
+        <div><div class="rev-name">${r.name}</div><div class="rev-meta">${r.meta}</div></div>
+      </div>
+      <div class="stars" style="font-size:13px;margin-bottom:8px;">★★★★★</div>
+      <p>"${r.text}"</p>
+      <span class="rev-topic">#${r.topic}</span>
+    </div>`));
+});
+
+const galGrid=document.getElementById('gal-grid');
+GALLERY.forEach((g,i)=>{
+  galGrid.appendChild(el(`
+    <div class="gal-card tilt reveal" style="background:linear-gradient(150deg,${g.g1},${g.g2});">
+      <div class="gicon">0${i+1}</div>
+      <div class="tilt-inner">
+        <div class="gtag">${g.tag}</div>
+        <h5>${g.title}</h5>
+      </div>
+    </div>`));
+});
+
+const faqList=document.getElementById('faq-list');
+FAQS.forEach((f,i)=>{
+  const item=el(`
+    <div class="faq-item">
+      <div class="faq-q"><span>${f.q}</span><span class="plus">+</span></div>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>`);
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){item.classList.add('open');const a=item.querySelector('.faq-a');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+  faqList.appendChild(item);
+});
+
+/* ===================== NAV SCROLL STATE ===================== */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>30);
+});
+
+/* ===================== REVEAL ON SCROLL ===================== */
+const revealEls=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.1, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(elm=>io.observe(elm));
+} else {
+  revealEls.forEach(elm=>elm.classList.add('in'));
+}
+// Failsafe: never leave content permanently invisible, regardless of observer/env quirks.
+setTimeout(()=>revealEls.forEach(elm=>elm.classList.add('in')), 1800);
+
+/* ===================== 3D TILT ON CARDS ===================== */
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.style.perspective='800px';
+  card.addEventListener('mousemove',(e)=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) scale(1.02)`;
+    card.style.boxShadow=`${-x*30}px ${y*30+18}px 50px -20px rgba(15,23,42,.35)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='rotateY(0) rotateX(0) scale(1)';
+    card.style.boxShadow='';
+  });
+});
+
+/* ===================== THREE.JS HERO SCENE ===================== */
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  const heroEl=document.getElementById('hero');
+  let W=heroEl.clientWidth, H=heroEl.clientHeight;
+
+  const scene=new THREE.Scene();
+  scene.fog=new THREE.FogExp2(0x0b1220, 0.026);
+
+  const camera=new THREE.PerspectiveCamera(45, W/H, 0.1, 100);
+  camera.position.set(0,0,11);
+
+  const renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(W,H);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xc7d6ff, 1.0));
+  const key=new THREE.PointLight(0xe8f6ff, 8, 40); key.position.set(6,7,9); scene.add(key);
+  const rim=new THREE.PointLight(0xd9b877, 3.6, 40); rim.position.set(-6,-2,-3); scene.add(rim);
+  const fill=new THREE.PointLight(0xffffff, 3.2, 40); fill.position.set(1,-5,7); scene.add(fill);
+  const topGlow=new THREE.PointLight(0x5eead4, 2.6, 30); topGlow.position.set(2,6,2); scene.add(topGlow);
+  const specHit=new THREE.PointLight(0xffffff, 4, 20); specHit.position.set(4.2,1.5,7); scene.add(specHit);
+
+  // ---- Custom molar (crown + roots) — our own geometry, no external assets ----
+  const toothGroup=new THREE.Group();
+  const enamelMat=new THREE.MeshStandardMaterial({
+    color:0xfdfefe, roughness:0.32, metalness:0.04, emissive:0x0d2a26, emissiveIntensity:0.15
+  });
+  const rootMat=new THREE.MeshStandardMaterial({color:0xf3ecd9, roughness:0.6, metalness:0.02});
+
+  const crownGeo=new THREE.SphereGeometry(2.0, 96, 96);
+  const posAttr=crownGeo.attributes.position;
+  for(let i=0;i<posAttr.count;i++){
+    const vx=posAttr.getX(i), vy=posAttr.getY(i), vz=posAttr.getZ(i);
+    const bump = 1 + 0.028*Math.sin(vx*3.1)*Math.cos(vz*2.8) + (vy>0.55?0.045*Math.sin(vx*4+vz*4):0);
+    posAttr.setXYZ(i, vx*bump, vy*(vy>0?bump*1.01:0.72), vz*bump);
+  }
+  crownGeo.computeVertexNormals();
+  const crown=new THREE.Mesh(crownGeo, enamelMat);
+  crown.scale.set(1,0.76,1);
+  crown.position.y=0.9;
+  toothGroup.add(crown);
+
+  const rootPositions=[[-0.9,-0.3],[0.9,-0.3],[0,-0.15]];
+  rootPositions.forEach((p,idx)=>{
+    const rg=new THREE.CylinderGeometry(0.4,0.06,2.6,24);
+    const root=new THREE.Mesh(rg, rootMat);
+    root.position.set(p[0], -1.5+p[1]*0.2, idx===2?0.15:0);
+    root.rotation.z = idx===0? 0.18 : idx===1? -0.18 : 0.02;
+    root.rotation.x = idx===2? 0.12 : 0;
+    toothGroup.add(root);
+  });
+
+  toothGroup.scale.setScalar(0.92);
+  toothGroup.position.set(3.6,-0.4,-1);
+  scene.add(toothGroup);
+
+  const ringGeo=new THREE.TorusGeometry(2.6,0.02,8,64);
+  const ringMat=new THREE.MeshBasicMaterial({color:0x2dd4bf, transparent:true, opacity:0.35});
+  const ring=new THREE.Mesh(ringGeo,ringMat);
+  ring.rotation.x=Math.PI/2.1;
+  ring.position.copy(toothGroup.position);
+  ring.position.y-=2.4;
+  scene.add(ring);
+
+  // ---- Floating particles ----
+  const PCOUNT=140;
+  const pGeo=new THREE.BufferGeometry();
+  const pPos=new Float32Array(PCOUNT*3);
+  const pSpeed=new Float32Array(PCOUNT);
+  for(let i=0;i<PCOUNT;i++){
+    pPos[i*3]=(Math.random()-0.5)*26;
+    pPos[i*3+1]=(Math.random()-0.5)*16;
+    pPos[i*3+2]=(Math.random()-0.5)*14-2;
+    pSpeed[i]=0.15+Math.random()*0.35;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos,3));
+  const pMat=new THREE.PointsMaterial({color:0x5eead4, size:0.045, transparent:true, opacity:0.55, sizeAttenuation:true});
+  const particles=new THREE.Points(pGeo,pMat);
+  scene.add(particles);
+
+  // mouse parallax
+  let mx=0,my=0, tx=0,ty=0;
+  window.addEventListener('mousemove',(e)=>{
+    mx=(e.clientX/window.innerWidth-0.5);
+    my=(e.clientY/window.innerHeight-0.5);
+  });
+
+  function onResize(){
+    W=heroEl.clientWidth; H=heroEl.clientHeight;
+    camera.aspect=W/H; camera.updateProjectionMatrix();
+    renderer.setSize(W,H);
+  }
+  window.addEventListener('resize', onResize);
+
+  const clock=new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    const t=clock.getElapsedTime();
+
+    toothGroup.rotation.y = t*0.35;
+    toothGroup.rotation.z = Math.sin(t*0.4)*0.06;
+    toothGroup.position.y = -0.4 + Math.sin(t*0.8)*0.15;
+
+    const posArr=pGeo.attributes.position.array;
+    for(let i=0;i<PCOUNT;i++){
+      posArr[i*3+1]+=pSpeed[i]*0.012;
+      if(posArr[i*3+1]>8){posArr[i*3+1]=-8;}
+    }
+    pGeo.attributes.position.needsUpdate=true;
+    particles.rotation.y=t*0.02;
+
+    tx += (mx*1.2 - tx)*0.03;
+    ty += (my*0.8 - ty)*0.03;
+    camera.position.x = tx;
+    camera.position.y = -ty+0.2;
+    camera.lookAt(1.8,-0.3,0);
+
+    renderer.render(scene,camera);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>
