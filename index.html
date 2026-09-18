@@ -98,17 +98,26 @@
   .hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
   .hero-stat b{display:block;font-size:26px;color:var(--gold-light);font-weight:700;font-family:'Fraunces',serif;}
   .hero-stat span{font-size:12.5px;color:#94a3b8;letter-spacing:.04em;text-transform:uppercase;}
-  .hero-tooth{position:relative;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+  .hero-tooth{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;user-select:none;}
   .hero-tooth:before{
     content:"";position:absolute;width:70%;aspect-ratio:1/1;border-radius:50%;
-    background:radial-gradient(circle,rgba(45,212,191,.28),transparent 70%);filter:blur(6px);z-index:0;
+    background:radial-gradient(circle,rgba(45,212,191,.28),transparent 70%);filter:blur(6px);z-index:0;pointer-events:none;
   }
   .hero-tooth video{
     position:relative;z-index:1;width:min(100%,480px);aspect-ratio:1/1;object-fit:cover;
     mask-image:radial-gradient(circle,black 58%,transparent 78%);
     -webkit-mask-image:radial-gradient(circle,black 58%,transparent 78%);
     mix-blend-mode:screen;
+    cursor:grab;touch-action:none;
   }
+  .hero-tooth video:active{cursor:grabbing;}
+  .hero-tooth-hint{
+    position:relative;z-index:1;margin-top:-8px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:#94a3b8;font-weight:600;display:flex;align-items:center;gap:8px;opacity:.85;transition:opacity .3s;
+    pointer-events:none;
+  }
+  .hero-tooth-hint svg{width:15px;height:15px;stroke:#94a3b8;}
+  .hero-tooth.dragging .hero-tooth-hint{opacity:0;}
   @media(max-width:900px){.hero-tooth{margin-top:-20px;}.hero-tooth video{width:min(78%,340px);}}
   .scroll-cue{
     position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;
@@ -124,6 +133,26 @@
   .trust-grid{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;}
   .trust-item{display:flex;align-items:center;gap:10px;color:#e2e8f0;font-size:13.5px;font-weight:600;}
   .trust-item .ic{width:34px;height:34px;border-radius:9px;background:rgba(45,212,191,.15);display:flex;align-items:center;justify-content:center;color:var(--teal-light);flex-shrink:0;}
+
+  /* ---------- BY THE NUMBERS + TIMELINE ---------- */
+  #by-numbers{background:#fff;padding-top:80px;padding-bottom:80px;}
+  .stat-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+  .stat-big{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(52px,8vw,84px);color:var(--gold);line-height:1;}
+  .stat-big-label{font-size:17px;color:var(--navy-soft);font-weight:600;max-width:280px;line-height:1.4;}
+  .stat-mini-row{display:flex;gap:36px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line);}
+  .stat-mini b{display:block;font-family:'Fraunces',serif;font-size:22px;color:var(--navy);}
+  .stat-mini span{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
+  .timeline-wrap{margin-top:60px;}
+  .timeline-label{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:26px;}
+  .timeline-track{position:relative;display:flex;justify-content:space-between;gap:20px;}
+  .timeline-track:before{content:"";position:absolute;top:6px;left:0;right:0;height:1px;background:var(--line);}
+  .timeline-node{position:relative;flex:1;padding-top:26px;}
+  .timeline-node .dot{position:absolute;top:0;left:0;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--gold);}
+  .timeline-node.active .dot{background:var(--gold);}
+  .timeline-node h5{font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:4px;}
+  .timeline-node .role{font-size:12.5px;color:var(--teal-dark);font-weight:700;margin-bottom:6px;}
+  .timeline-node p{font-size:12.8px;color:#64748b;line-height:1.5;max-width:220px;}
+  @media(max-width:700px){.timeline-track{flex-direction:column;gap:26px;}.timeline-track:before{display:none;}.timeline-node{padding-left:24px;padding-top:0;}.timeline-node .dot{top:4px;left:0;}}
 
   /* ---------- CARD 3D TILT ---------- */
   .tilt{transition:transform .12s ease-out,box-shadow .3s ease;will-change:transform;}
@@ -395,8 +424,12 @@
         <div class="hero-stat"><b>100%</b><span>Autoclave Sterilized</span></div>
       </div>
     </div>
-    <div class="hero-tooth">
-      <video autoplay muted loop playsinline src="assets/brand/tooth-3d-turntable.mp4"></video>
+    <div class="hero-tooth" id="heroTooth">
+      <video id="heroToothVideo" muted playsinline preload="auto" src="assets/brand/tooth-3d-scrub.mp4"></video>
+      <div class="hero-tooth-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5a2 2 0 1 0-2 2M8 4l-2 2 2 2M16 4l2 2-2 2"/><path d="M13 5c-4 0-7 3-7 7 0 3 2 5 5 6M13 5c4 0 7 3 7 7 0 3-2 5-5 6"/></svg>
+        Drag to rotate
+      </div>
     </div>
   </div>
   <div class="scroll-cue">Scroll<div class="dot-track"><div class="dot"></div></div></div>
@@ -410,6 +443,33 @@
     <div class="trust-item"><div class="ic">🕊️</div>Zero Pressure Advice</div>
   </div>
 </div>
+
+<!-- ================= BY THE NUMBERS + TIMELINE ================= -->
+<section id="by-numbers">
+  <div class="wrap">
+    <span class="eyebrow reveal">Trusted in Sector J, DHA Phase 6</span>
+    <div class="reveal">
+      <div class="stat-row">
+        <div class="stat-big">27+</div>
+        <div class="stat-big-label">Years of combined clinical experience across our doctors</div>
+      </div>
+      <div class="stat-mini-row">
+        <div class="stat-mini"><b>4.7★</b><span>Google · 40 Reviews</span></div>
+        <div class="stat-mini"><b>100%</b><span>Recommend on Facebook</span></div>
+        <div class="stat-mini"><b>3,800+</b><span>Following on Instagram &amp; Facebook</span></div>
+        <div class="stat-mini"><b>£££</b><span>Facebook Price Tier</span></div>
+      </div>
+    </div>
+    <div class="timeline-wrap reveal">
+      <div class="timeline-label">Clinical Faculty — Years at Broadway Dental</div>
+      <div class="timeline-track">
+        <div class="timeline-node active"><div class="dot"></div><h5>Dr. Faizan Haroon</h5><div class="role">10+ yrs · Restorative &amp; Pediatric</div><p>Gentle root canals and calm, fear‑free visits for children.</p></div>
+        <div class="timeline-node active"><div class="dot"></div><h5>Dr. Abir</h5><div class="role">9+ yrs · Orthodontics</div><p>Braces, alignment, and comprehensive long‑term treatment plans.</p></div>
+        <div class="timeline-node active"><div class="dot"></div><h5>Dr. Fareed</h5><div class="role">8+ yrs · Oral Surgery</div><p>Complex wisdom tooth removals with minimal recovery downtime.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ================= CONSULT ================= -->
 <section id="consult">
@@ -671,6 +731,56 @@
     if(g) g.remove();
     document.body.classList.remove('gate-active');
   }
+})();
+
+/* ===================== HERO TOOTH — DRAG TO ROTATE ===================== */
+(function(){
+  try{
+    const wrap = document.getElementById('heroTooth');
+    const vid = document.getElementById('heroToothVideo');
+    if(!wrap || !vid) return;
+
+    let duration = 4; // fallback until metadata loads
+    vid.addEventListener('loadedmetadata', () => {
+      if(vid.duration && isFinite(vid.duration)) duration = vid.duration;
+      vid.currentTime = duration * 0.06; // nice default angle
+    });
+
+    let dragging = false, startX = 0, startTime = 0, pending = false;
+    const SENSITIVITY = 0.0035; // seconds of video per pixel dragged
+
+    function wrapTime(t){
+      let r = t % duration;
+      if(r < 0) r += duration;
+      return r;
+    }
+    function setFrame(t){
+      if(pending) return;
+      pending = true;
+      requestAnimationFrame(() => { vid.currentTime = wrapTime(t); pending = false; });
+    }
+    function pointerDown(e){
+      dragging = true;
+      startX = e.clientX;
+      startTime = vid.currentTime;
+      wrap.classList.add('dragging');
+      vid.setPointerCapture && vid.setPointerCapture(e.pointerId);
+    }
+    function pointerMove(e){
+      if(!dragging) return;
+      const dx = e.clientX - startX;
+      setFrame(startTime - dx * SENSITIVITY);
+    }
+    function pointerUp(){
+      dragging = false;
+      wrap.classList.remove('dragging');
+    }
+
+    vid.addEventListener('pointerdown', pointerDown);
+    window.addEventListener('pointermove', pointerMove);
+    window.addEventListener('pointerup', pointerUp);
+    window.addEventListener('pointercancel', pointerUp);
+  }catch(err){}
 })();
 
 /* ===================== CONTENT DATA ===================== */
