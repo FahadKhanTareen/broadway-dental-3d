@@ -91,7 +91,7 @@
   }
   .hero-badge b{color:#fbbf24;}
   #hero h1{font-family:'Fraunces',serif;font-size:clamp(38px,5.4vw,62px);color:#fff;font-weight:500;letter-spacing:-.02em;margin-bottom:24px;}
-  #hero h1 span{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;}
+  #hero h1 span.no-split{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;}
   #hero p{color:#cbd5e1;font-size:17px;line-height:1.7;max-width:520px;margin-bottom:34px;}
   #hero p b{color:#f1f5f9;}
   .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;}
@@ -329,6 +329,15 @@
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
   .reveal.in{opacity:1;transform:translateY(0);}
 
+  /* ---------- SCROLL-ANIMATED HEADING TEXT ---------- */
+  .word-split{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em;}
+  .word-inner{
+    display:inline-block;transform:translateY(105%);opacity:0;
+    transition:transform .85s cubic-bezier(.19,1,.22,1),opacity .6s ease;
+    will-change:transform;
+  }
+  .word-heading.in .word-inner{transform:translateY(0);opacity:1;}
+
   /* ---------- ENTER GATE ---------- */
   body.gate-active{overflow:hidden;height:100vh;}
   #enter-gate{
@@ -412,7 +421,7 @@
   <div class="hero-inner">
     <div>
       <div class="eyebrow" style="color:#e2c98a;">Broadway Dental Studio</div>
-      <h1>Gentle, modern &amp;<br><span>empathetic</span> dental care<br>in DHA Phase 6</h1>
+      <h1 class="word-heading">Gentle, modern &amp;<br><span class="no-split">empathetic</span> dental care<br>in DHA Phase 6</h1>
       <p>Led by <b>Dr. Faizan Haroon</b> &amp; <b>Dr. Abir</b> — painless rotary root canals, fear‑free pediatric care, wisdom tooth removals, and precision smile aesthetics, in a spotless clinical environment.</p>
       <div class="hero-actions">
         <a href="#booking"><button class="btn btn-primary">Book an Appointment<span class="btn-arrow">→</span></button></a>
@@ -477,7 +486,7 @@
   <div class="wrap consult-grid">
     <div class="reveal">
       <span class="eyebrow">Complimentary Patient Service</span>
-      <h2 class="section-title">Claim Your Free Smile Assessment</h2>
+      <h2 class="section-title word-heading">Claim Your Free Smile Assessment</h2>
       <p class="section-sub" style="margin-bottom:30px;">We believe everyone deserves transparent, pressure‑free advice before committing to any treatment. Meet Dr. Faizan or Dr. Abir for an honest review of your oral health.</p>
       <ul class="consult-points">
         <li><span class="chk">✓</span>Comprehensive visual tooth &amp; gum inspection</li>
@@ -516,7 +525,7 @@
 <section id="services">
   <div class="wrap">
     <span class="eyebrow reveal">Specialized Dentistry in Lahore</span>
-    <h2 class="section-title reveal">Comprehensive Treatments &amp; Aesthetic Care</h2>
+    <h2 class="section-title reveal word-heading">Comprehensive Treatments &amp; Aesthetic Care</h2>
     <p class="section-sub reveal">From pain‑free rotary root canals to pediatric dental phobia relief and brilliant smile makeovers.</p>
     <div class="svc-grid" id="svc-grid"></div>
   </div>
@@ -526,7 +535,7 @@
 <section id="doctors">
   <div class="wrap">
     <span class="eyebrow reveal" style="color:var(--teal-light);">Clinical Faculty</span>
-    <h2 class="section-title reveal" style="color:#fff;">Meet Your Specialists</h2>
+    <h2 class="section-title reveal word-heading" style="color:#fff;">Meet Your Specialists</h2>
     <p class="section-sub reveal">Sector J, DHA Phase 6, Lahore.</p>
     <div class="doc-grid" id="doc-grid"></div>
   </div>
@@ -537,7 +546,7 @@
   <div class="wrap why-grid">
     <div class="why-head reveal">
       <span class="eyebrow" style="color:var(--gold-light);">Why patients stay</span>
-      <h2>Three reasons<br>to <em>choose us.</em></h2>
+      <h2 class="word-heading">Three reasons<br>to <em>choose us.</em></h2>
       <p class="section-sub" style="color:#94a3b8;margin-top:18px;margin-bottom:0;">Ten years of gentle, transparent dentistry in Sector J — built one honest consultation at a time.</p>
     </div>
     <div class="reveal">
@@ -561,7 +570,7 @@
 <section id="reviews">
   <div class="wrap">
     <span class="eyebrow reveal">Verified Google Reviews</span>
-    <h2 class="section-title reveal">Patient Experiences</h2>
+    <h2 class="section-title reveal word-heading">Patient Experiences</h2>
     <div class="rev-scale reveal">
       <div class="rev-score">4.7</div>
       <div>
@@ -589,7 +598,7 @@
 <section id="gallery">
   <div class="wrap">
     <span class="eyebrow reveal">Studio Tour &amp; Facilities</span>
-    <h2 class="section-title reveal">Broadway Dental Studio Gallery</h2>
+    <h2 class="section-title reveal word-heading">Broadway Dental Studio Gallery</h2>
     <p class="section-sub reveal">Our 2nd‑floor clinic in Sector J — sterile operatories, modern chairs, child‑friendly corners, and a dedicated sterilization suite.</p>
     <div class="gal-grid" id="gal-grid"></div>
   </div>
@@ -600,7 +609,7 @@
   <div class="wrap loc-grid">
     <div class="reveal">
       <span class="eyebrow">Location, Hours &amp; Amenities</span>
-      <h2 class="section-title">Visit Broadway Dental Studio</h2>
+      <h2 class="section-title word-heading">Visit Broadway Dental Studio</h2>
       <table class="hours-table">
         <tr><td>Sunday</td><td>Closed</td></tr>
         <tr><td>Monday</td><td>4:00 PM – 9:00 PM</td></tr>
@@ -634,7 +643,7 @@
 <section id="faq">
   <div class="wrap" style="max-width:860px;">
     <span class="eyebrow reveal">Got Questions?</span>
-    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <h2 class="section-title reveal word-heading">Frequently Asked Questions</h2>
     <div id="faq-list"></div>
   </div>
 </section>
@@ -704,6 +713,7 @@
       document.body.classList.remove('gate-active');
       try{ sessionStorage.setItem('bwd_entered','1'); }catch(e){}
       window.removeEventListener('keydown', onKey);
+      document.dispatchEvent(new CustomEvent('gateExited'));
     }
     function onKey(){ exitGate(); }
 
@@ -922,6 +932,83 @@ if('IntersectionObserver' in window){
 }
 // Failsafe: never leave content permanently invisible, regardless of observer/env quirks.
 setTimeout(()=>revealEls.forEach(elm=>elm.classList.add('in')), 1800);
+
+/* ===================== SCROLL-ANIMATED HEADING TEXT (word-by-word) ===================== */
+(function(){
+  try{
+    function splitWords(root){
+      const inners=[];
+      function walk(node){
+        if(node.nodeType===3){
+          const text=node.textContent;
+          if(!text.trim()){ return; }
+          const frag=document.createDocumentFragment();
+          text.split(/(\s+)/).forEach(part=>{
+            if(part==='') return;
+            if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(part)); return; }
+            const outer=document.createElement('span');
+            outer.className='word-split';
+            const inner=document.createElement('span');
+            inner.className='word-inner';
+            inner.textContent=part;
+            outer.appendChild(inner);
+            frag.appendChild(outer);
+            inners.push(inner);
+          });
+          node.parentNode.replaceChild(frag, node);
+        } else if(node.nodeType===1){
+          if(node.classList && node.classList.contains('no-split')){
+            const outer=document.createElement('span');
+            outer.className='word-split';
+            const inner=document.createElement('span');
+            inner.className='word-inner';
+            node.parentNode.insertBefore(outer, node);
+            inner.appendChild(node);
+            outer.appendChild(inner);
+            inners.push(inner);
+            return;
+          }
+          Array.from(node.childNodes).forEach(walk);
+        }
+      }
+      Array.from(root.childNodes).forEach(walk);
+      return inners;
+    }
+
+    const headings=Array.from(document.querySelectorAll('.word-heading'));
+    const heroHeading=document.querySelector('#hero .word-heading');
+
+    headings.forEach(h=>{
+      const inners=splitWords(h);
+      inners.forEach((span,i)=>{ span.style.transitionDelay=(i*45)+'ms'; });
+    });
+
+    const nonHero=headings.filter(h=>h!==heroHeading);
+    if('IntersectionObserver' in window){
+      const hio=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); hio.unobserve(e.target); } });
+      },{threshold:.15, rootMargin:'0px 0px -60px 0px'});
+      nonHero.forEach(h=>hio.observe(h));
+    } else {
+      nonHero.forEach(h=>h.classList.add('in'));
+    }
+    setTimeout(()=>headings.forEach(h=>h.classList.add('in')), 2200);
+
+    if(heroHeading){
+      const gate=document.getElementById('enter-gate');
+      const gateResolved=!gate || gate.classList.contains('hidden');
+      if(gateResolved){
+        setTimeout(()=>heroHeading.classList.add('in'), 150);
+      } else {
+        document.addEventListener('gateExited', ()=>{
+          setTimeout(()=>heroHeading.classList.add('in'), 250);
+        }, {once:true});
+      }
+    }
+  }catch(err){
+    document.querySelectorAll('.word-heading').forEach(h=>h.classList.add('in'));
+  }
+})();
 
 /* ===================== 3D TILT ON CARDS ===================== */
 document.querySelectorAll('.tilt').forEach(card=>{
