@@ -98,6 +98,18 @@
   .hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
   .hero-stat b{display:block;font-size:26px;color:var(--gold-light);font-weight:700;font-family:'Fraunces',serif;}
   .hero-stat span{font-size:12.5px;color:#94a3b8;letter-spacing:.04em;text-transform:uppercase;}
+  .hero-tooth{position:relative;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+  .hero-tooth:before{
+    content:"";position:absolute;width:70%;aspect-ratio:1/1;border-radius:50%;
+    background:radial-gradient(circle,rgba(45,212,191,.28),transparent 70%);filter:blur(6px);z-index:0;
+  }
+  .hero-tooth video{
+    position:relative;z-index:1;width:min(100%,480px);aspect-ratio:1/1;object-fit:cover;
+    mask-image:radial-gradient(circle,black 58%,transparent 78%);
+    -webkit-mask-image:radial-gradient(circle,black 58%,transparent 78%);
+    mix-blend-mode:screen;
+  }
+  @media(max-width:900px){.hero-tooth{margin-top:-20px;}.hero-tooth video{width:min(78%,340px);}}
   .scroll-cue{
     position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;
     color:#94a3b8;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
@@ -382,6 +394,9 @@
         <div class="hero-stat"><b>40+</b><span>Verified Reviews</span></div>
         <div class="hero-stat"><b>100%</b><span>Autoclave Sterilized</span></div>
       </div>
+    </div>
+    <div class="hero-tooth">
+      <video autoplay muted loop playsinline src="assets/brand/tooth-3d-turntable.mp4"></video>
     </div>
   </div>
   <div class="scroll-cue">Scroll<div class="dot-track"><div class="dot"></div></div></div>
@@ -829,55 +844,10 @@ document.querySelectorAll('.tilt').forEach(card=>{
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(W,H);
 
-  // Lights
-  scene.add(new THREE.AmbientLight(0xc7d6ff, 1.0));
-  const key=new THREE.PointLight(0xe8f6ff, 8, 40); key.position.set(6,7,9); scene.add(key);
-  const rim=new THREE.PointLight(0xd9b877, 3.6, 40); rim.position.set(-6,-2,-3); scene.add(rim);
-  const fill=new THREE.PointLight(0xffffff, 3.2, 40); fill.position.set(1,-5,7); scene.add(fill);
-  const topGlow=new THREE.PointLight(0x5eead4, 2.6, 30); topGlow.position.set(2,6,2); scene.add(topGlow);
-  const specHit=new THREE.PointLight(0xffffff, 4, 20); specHit.position.set(4.2,1.5,7); scene.add(specHit);
-
-  // ---- Custom molar (crown + roots) — our own geometry, no external assets ----
-  const toothGroup=new THREE.Group();
-  const enamelMat=new THREE.MeshStandardMaterial({
-    color:0xfdfefe, roughness:0.32, metalness:0.04, emissive:0x0d2a26, emissiveIntensity:0.15
-  });
-  const rootMat=new THREE.MeshStandardMaterial({color:0xf3ecd9, roughness:0.6, metalness:0.02});
-
-  const crownGeo=new THREE.SphereGeometry(2.0, 96, 96);
-  const posAttr=crownGeo.attributes.position;
-  for(let i=0;i<posAttr.count;i++){
-    const vx=posAttr.getX(i), vy=posAttr.getY(i), vz=posAttr.getZ(i);
-    const bump = 1 + 0.028*Math.sin(vx*3.1)*Math.cos(vz*2.8) + (vy>0.55?0.045*Math.sin(vx*4+vz*4):0);
-    posAttr.setXYZ(i, vx*bump, vy*(vy>0?bump*1.01:0.72), vz*bump);
-  }
-  crownGeo.computeVertexNormals();
-  const crown=new THREE.Mesh(crownGeo, enamelMat);
-  crown.scale.set(1,0.76,1);
-  crown.position.y=0.9;
-  toothGroup.add(crown);
-
-  const rootPositions=[[-0.9,-0.3],[0.9,-0.3],[0,-0.15]];
-  rootPositions.forEach((p,idx)=>{
-    const rg=new THREE.CylinderGeometry(0.4,0.06,2.6,24);
-    const root=new THREE.Mesh(rg, rootMat);
-    root.position.set(p[0], -1.5+p[1]*0.2, idx===2?0.15:0);
-    root.rotation.z = idx===0? 0.18 : idx===1? -0.18 : 0.02;
-    root.rotation.x = idx===2? 0.12 : 0;
-    toothGroup.add(root);
-  });
-
-  toothGroup.scale.setScalar(0.92);
-  toothGroup.position.set(3.6,-0.4,-1);
-  scene.add(toothGroup);
-
-  const ringGeo=new THREE.TorusGeometry(2.6,0.02,8,64);
-  const ringMat=new THREE.MeshBasicMaterial({color:0x2dd4bf, transparent:true, opacity:0.35});
-  const ring=new THREE.Mesh(ringGeo,ringMat);
-  ring.rotation.x=Math.PI/2.1;
-  ring.position.copy(toothGroup.position);
-  ring.position.y-=2.4;
-  scene.add(ring);
+  // Lights (ambient atmosphere behind the real 3D tooth turntable video)
+  scene.add(new THREE.AmbientLight(0xc7d6ff, 0.8));
+  const key=new THREE.PointLight(0xe8f6ff, 3, 40); key.position.set(6,7,9); scene.add(key);
+  const rim=new THREE.PointLight(0xd9b877, 2, 40); rim.position.set(-6,-2,-3); scene.add(rim);
 
   // ---- Floating particles ----
   const PCOUNT=140;
@@ -913,10 +883,6 @@ document.querySelectorAll('.tilt').forEach(card=>{
   function animate(){
     requestAnimationFrame(animate);
     const t=clock.getElapsedTime();
-
-    toothGroup.rotation.y = t*0.35;
-    toothGroup.rotation.z = Math.sin(t*0.4)*0.06;
-    toothGroup.position.y = -0.4 + Math.sin(t*0.8)*0.15;
 
     const posArr=pGeo.attributes.position.array;
     for(let i=0;i<PCOUNT;i++){
