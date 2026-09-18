@@ -420,7 +420,7 @@
   <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div>
-      <div class="eyebrow" style="color:#e2c98a;">Broadway Dental Studio</div>
+      <div class="eyebrow word-heading" style="color:#e2c98a;">Broadway Dental Studio</div>
       <h1 class="word-heading">Gentle, modern &amp;<br><span class="no-split">empathetic</span> dental care<br>in DHA Phase 6</h1>
       <p>Led by <b>Dr. Faizan Haroon</b> &amp; <b>Dr. Abir</b> — painless rotary root canals, fear‑free pediatric care, wisdom tooth removals, and precision smile aesthetics, in a spotless clinical environment.</p>
       <div class="hero-actions">
@@ -457,7 +457,7 @@
 <!-- ================= BY THE NUMBERS + TIMELINE ================= -->
 <section id="by-numbers">
   <div class="wrap">
-    <span class="eyebrow reveal">Trusted in Sector J, DHA Phase 6</span>
+    <span class="eyebrow word-heading">Trusted in Sector J, DHA Phase 6</span>
     <div class="reveal">
       <div class="stat-row">
         <div class="stat-big">27+</div>
@@ -485,7 +485,7 @@
 <section id="consult">
   <div class="wrap consult-grid">
     <div class="reveal">
-      <span class="eyebrow">Complimentary Patient Service</span>
+      <span class="eyebrow word-heading">Complimentary Patient Service</span>
       <h2 class="section-title word-heading">Claim Your Free Smile Assessment</h2>
       <p class="section-sub" style="margin-bottom:30px;">We believe everyone deserves transparent, pressure‑free advice before committing to any treatment. Meet Dr. Faizan or Dr. Abir for an honest review of your oral health.</p>
       <ul class="consult-points">
@@ -524,7 +524,7 @@
 <!-- ================= SERVICES ================= -->
 <section id="services">
   <div class="wrap">
-    <span class="eyebrow reveal">Specialized Dentistry in Lahore</span>
+    <span class="eyebrow word-heading">Specialized Dentistry in Lahore</span>
     <h2 class="section-title reveal word-heading">Comprehensive Treatments &amp; Aesthetic Care</h2>
     <p class="section-sub reveal">From pain‑free rotary root canals to pediatric dental phobia relief and brilliant smile makeovers.</p>
     <div class="svc-grid" id="svc-grid"></div>
@@ -534,7 +534,7 @@
 <!-- ================= DOCTORS ================= -->
 <section id="doctors">
   <div class="wrap">
-    <span class="eyebrow reveal" style="color:var(--teal-light);">Clinical Faculty</span>
+    <span class="eyebrow word-heading" style="color:var(--teal-light);">Clinical Faculty</span>
     <h2 class="section-title reveal word-heading" style="color:#fff;">Meet Your Specialists</h2>
     <p class="section-sub reveal">Sector J, DHA Phase 6, Lahore.</p>
     <div class="doc-grid" id="doc-grid"></div>
@@ -545,7 +545,7 @@
 <section id="why">
   <div class="wrap why-grid">
     <div class="why-head reveal">
-      <span class="eyebrow" style="color:var(--gold-light);">Why patients stay</span>
+      <span class="eyebrow word-heading" style="color:var(--gold-light);">Why patients stay</span>
       <h2 class="word-heading">Three reasons<br>to <em>choose us.</em></h2>
       <p class="section-sub" style="color:#94a3b8;margin-top:18px;margin-bottom:0;">Ten years of gentle, transparent dentistry in Sector J — built one honest consultation at a time.</p>
     </div>
@@ -569,7 +569,7 @@
 <!-- ================= REVIEWS ================= -->
 <section id="reviews">
   <div class="wrap">
-    <span class="eyebrow reveal">Verified Google Reviews</span>
+    <span class="eyebrow word-heading">Verified Google Reviews</span>
     <h2 class="section-title reveal word-heading">Patient Experiences</h2>
     <div class="rev-scale reveal">
       <div class="rev-score">4.7</div>
@@ -597,7 +597,7 @@
 <!-- ================= GALLERY ================= -->
 <section id="gallery">
   <div class="wrap">
-    <span class="eyebrow reveal">Studio Tour &amp; Facilities</span>
+    <span class="eyebrow word-heading">Studio Tour &amp; Facilities</span>
     <h2 class="section-title reveal word-heading">Broadway Dental Studio Gallery</h2>
     <p class="section-sub reveal">Our 2nd‑floor clinic in Sector J — sterile operatories, modern chairs, child‑friendly corners, and a dedicated sterilization suite.</p>
     <div class="gal-grid" id="gal-grid"></div>
@@ -608,7 +608,7 @@
 <section id="location">
   <div class="wrap loc-grid">
     <div class="reveal">
-      <span class="eyebrow">Location, Hours &amp; Amenities</span>
+      <span class="eyebrow word-heading">Location, Hours &amp; Amenities</span>
       <h2 class="section-title word-heading">Visit Broadway Dental Studio</h2>
       <table class="hours-table">
         <tr><td>Sunday</td><td>Closed</td></tr>
@@ -642,7 +642,7 @@
 <!-- ================= FAQ ================= -->
 <section id="faq">
   <div class="wrap" style="max-width:860px;">
-    <span class="eyebrow reveal">Got Questions?</span>
+    <span class="eyebrow word-heading">Got Questions?</span>
     <h2 class="section-title reveal word-heading">Frequently Asked Questions</h2>
     <div id="faq-list"></div>
   </div>
@@ -849,7 +849,7 @@ SERVICES.forEach(s=>{
       <div class="tilt-inner">
         <div class="tag">${s.tag}</div>
         <div class="svc-icon">${s.icon}</div>
-        <h4>${s.name}</h4>
+        <h4 class="word-heading">${s.name}</h4>
         <p>${s.desc}</p>
         <div class="svc-foot"><span>⏱ ${s.time}</span><span class="book">Book Slot →</span></div>
       </div>
@@ -862,7 +862,7 @@ DOCTORS.forEach(d=>{
     <div class="doc-card tilt reveal">
       <div class="tilt-inner">
         <div class="doc-avatar">${d.photo ? `<img src="${d.photo}" alt="${d.name}">` : d.initials}</div>
-        <h4>${d.name}</h4>
+        <h4 class="word-heading">${d.name}</h4>
         <div class="doc-exp">${d.exp}</div>
         <div class="doc-role">${d.role}</div>
         <p class="bio">${d.bio}</p>
@@ -877,7 +877,7 @@ REVIEWS.forEach(r=>{
     <div class="rev-card reveal">
       <div class="rev-top">
         <div class="rev-ava">${ini}</div>
-        <div><div class="rev-name">${r.name}</div><div class="rev-meta">${r.meta}</div></div>
+        <div><div class="rev-name word-heading">${r.name}</div><div class="rev-meta">${r.meta}</div></div>
       </div>
       <div class="stars" style="font-size:13px;margin-bottom:8px;">★★★★★</div>
       <p>"${r.text}"</p>
@@ -895,7 +895,7 @@ GALLERY.forEach((g,i)=>{
       <div class="gicon">0${i+1}</div>
       <div class="tilt-inner">
         <div class="gtag">${g.tag}</div>
-        <h5>${g.title}</h5>
+        <h5 class="word-heading">${g.title}</h5>
       </div>
     </div>`));
 });
@@ -904,7 +904,7 @@ const faqList=document.getElementById('faq-list');
 FAQS.forEach((f,i)=>{
   const item=el(`
     <div class="faq-item">
-      <div class="faq-q"><span>${f.q}</span><span class="plus">+</span></div>
+      <div class="faq-q"><span class="word-heading">${f.q}</span><span class="plus">+</span></div>
       <div class="faq-a"><p>${f.a}</p></div>
     </div>`);
   item.querySelector('.faq-q').addEventListener('click',()=>{
@@ -976,14 +976,14 @@ setTimeout(()=>revealEls.forEach(elm=>elm.classList.add('in')), 1800);
     }
 
     const headings=Array.from(document.querySelectorAll('.word-heading'));
-    const heroHeading=document.querySelector('#hero .word-heading');
+    const heroHeadings=headings.filter(h=>h.closest('#hero'));
 
     headings.forEach(h=>{
       const inners=splitWords(h);
       inners.forEach((span,i)=>{ span.style.transitionDelay=(i*45)+'ms'; });
     });
 
-    const nonHero=headings.filter(h=>h!==heroHeading);
+    const nonHero=headings.filter(h=>!heroHeadings.includes(h));
     if('IntersectionObserver' in window){
       const hio=new IntersectionObserver((entries)=>{
         entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); hio.unobserve(e.target); } });
@@ -994,20 +994,53 @@ setTimeout(()=>revealEls.forEach(elm=>elm.classList.add('in')), 1800);
     }
     setTimeout(()=>headings.forEach(h=>h.classList.add('in')), 2200);
 
-    if(heroHeading){
+    if(heroHeadings.length){
       const gate=document.getElementById('enter-gate');
       const gateResolved=!gate || gate.classList.contains('hidden');
+      const revealHero=()=>heroHeadings.forEach((h,i)=>setTimeout(()=>h.classList.add('in'), i*160));
       if(gateResolved){
-        setTimeout(()=>heroHeading.classList.add('in'), 150);
+        setTimeout(revealHero, 150);
       } else {
-        document.addEventListener('gateExited', ()=>{
-          setTimeout(()=>heroHeading.classList.add('in'), 250);
-        }, {once:true});
+        document.addEventListener('gateExited', ()=>{ setTimeout(revealHero, 250); }, {once:true});
       }
     }
   }catch(err){
     document.querySelectorAll('.word-heading').forEach(h=>h.classList.add('in'));
   }
+})();
+
+/* ===================== STAT NUMBER COUNT-UP ===================== */
+(function(){
+  try{
+    function animateCount(el){
+      const raw=el.textContent.trim();
+      const match=raw.match(/^([£$]*)(\d[\d,]*\.?\d*)(.*)$/);
+      if(!match) return;
+      const [,prefix,numStr,suffix]=match;
+      const target=parseFloat(numStr.replace(/,/g,''));
+      if(isNaN(target)) return;
+      const decimals=(numStr.split('.')[1]||'').length;
+      const duration=1100;
+      const start=performance.now();
+      function frame(now){
+        const t=Math.min(1,(now-start)/duration);
+        const eased=1-Math.pow(1-t,3);
+        const val=target*eased;
+        const formatted=decimals? val.toFixed(decimals) : Math.round(val).toLocaleString();
+        el.textContent=prefix+formatted+suffix;
+        if(t<1) requestAnimationFrame(frame);
+        else el.textContent=prefix+numStr+suffix;
+      }
+      requestAnimationFrame(frame);
+    }
+    const targets=Array.from(document.querySelectorAll('.hero-stat b, .stat-big, .stat-mini b'));
+    if('IntersectionObserver' in window){
+      const cio=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); } });
+      },{threshold:.4});
+      targets.forEach(t=>cio.observe(t));
+    }
+  }catch(err){}
 })();
 
 /* ===================== 3D TILT ON CARDS ===================== */
