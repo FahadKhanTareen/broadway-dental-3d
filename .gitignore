@@ -1,2 +1,6 @@
-assets/
+assets/*.mov
+assets/*.mp4
+brand-src/
 .DS_Store
+
+.vercel
