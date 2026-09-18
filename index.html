@@ -209,11 +209,12 @@
     border-radius:22px;padding:30px;backdrop-filter:blur(6px);
   }
   .doc-avatar{
-    width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-size:26px;font-weight:800;color:#fff;margin-bottom:20px;
+    width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:26px;font-weight:800;color:#fff;margin-bottom:20px;overflow:hidden;
     background:conic-gradient(from 200deg,var(--teal-light),#3b82f6,var(--teal));
     box-shadow:0 0 0 4px rgba(255,255,255,.06),0 20px 40px -18px rgba(13,148,136,.6);
   }
+  .doc-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center;}
   .doc-card h4{font-size:19px;margin-bottom:4px;}
   .doc-exp{font-size:12.5px;color:var(--teal-light);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em;}
   .doc-role{font-size:13.5px;color:#cbd5e1;font-weight:600;margin-bottom:12px;}
@@ -796,9 +797,9 @@ const SERVICES = [
 ];
 
 const DOCTORS = [
-  {initials:"FH", name:"Dr. Faizan Haroon", exp:"10+ Years Experience", role:"Restorative, Aesthetic & Pediatric Dentistry", bio:"Renowned for his gentle touch, thorough diagnostics, and empathetic patient care — praised for painless root canals and calming children who fear the dentist."},
-  {initials:"A", name:"Dr. Abir", exp:"9+ Years Experience", role:"Orthodontics & Comprehensive Dental Care", bio:"Dedicated specialist focused on tooth preservation, braces, and cosmetic alignment, known for building customized long‑term treatment plans."},
-  {initials:"F", name:"Dr. Fareed", exp:"8+ Years Experience", role:"Oral Surgery & Maxillofacial Specialist", bio:"Expert in complex wisdom tooth surgical removals and atraumatic extractions with minimal recovery downtime."},
+  {initials:"FH", photo:"assets/brand/dr-faizan.jpg", name:"Dr. Faizan Haroon", exp:"10+ Years Experience", role:"Endodontist &amp; Cosmetic Dentist · BDS, C‑Implant", bio:"Renowned for his gentle touch, thorough diagnostics, and empathetic patient care — praised for painless root canals and calming children who fear the dentist."},
+  {initials:"AS", photo:"assets/brand/dr-abir.jpg", name:"Dr. Abir Syed", exp:"9+ Years Experience", role:"Orthodontist (FCPS‑Trained) · BDS, C‑Implant", bio:"Dedicated specialist focused on tooth preservation, braces, and cosmetic alignment, known for building customized long‑term treatment plans."},
+  {initials:"F", name:"Dr. Fareed", exp:"8+ Years Experience", role:"Oral Surgery &amp; Maxillofacial Specialist", bio:"Expert in complex wisdom tooth surgical removals and atraumatic extractions with minimal recovery downtime."},
 ];
 
 const REVIEWS = [
@@ -850,7 +851,7 @@ DOCTORS.forEach(d=>{
   docGrid.appendChild(el(`
     <div class="doc-card tilt reveal">
       <div class="tilt-inner">
-        <div class="doc-avatar">${d.initials}</div>
+        <div class="doc-avatar">${d.photo ? `<img src="${d.photo}" alt="${d.name}">` : d.initials}</div>
         <h4>${d.name}</h4>
         <div class="doc-exp">${d.exp}</div>
         <div class="doc-role">${d.role}</div>
