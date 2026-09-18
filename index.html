@@ -30,7 +30,13 @@
     background:var(--paper);
     color:var(--navy);
     overflow-x:hidden;
+    cursor:url('assets/brand/cursor-tooth.svg') 6 4, auto;
   }
+  a, button, .btn, .tilt, .faq-q, .social-card, .logo-mark, select,
+  input[type="submit"], .hero-tooth video, .wa-fab, #wa-fab, .scroll-cue{
+    cursor:url('assets/brand/cursor-tooth-active.svg') 6 4, pointer;
+  }
+  input, textarea{ cursor:text; }
   img,svg{display:block;}
   a{color:inherit;text-decoration:none;}
   ul{list-style:none;}
@@ -47,7 +53,7 @@
   .section-sub{font-family:'Inter',sans-serif;font-size:16px;color:#57534e;max-width:620px;line-height:1.7;margin-bottom:56px;}
   .btn{
     display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:100px;
-    font-weight:700;font-size:14px;letter-spacing:.01em;cursor:pointer;border:none;transition:transform .25s ease,box-shadow .25s ease;
+    font-weight:700;font-size:14px;letter-spacing:.01em;border:none;transition:transform .25s ease,box-shadow .25s ease;
     font-family:'Inter',sans-serif;
   }
   .btn-primary{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1c1508;box-shadow:0 14px 30px -10px rgba(184,147,74,.55);}
@@ -301,7 +307,7 @@
   #faq{background:#fff;}
   .faq-item{border-bottom:1px solid var(--line);}
   .faq-q{
-    display:flex;justify-content:space-between;align-items:center;padding:22px 4px;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;padding:22px 4px;
     font-weight:700;font-size:15.5px;color:var(--navy);
   }
   .faq-q .plus{width:26px;height:26px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--teal-dark);transition:transform .3s;flex-shrink:0;}
@@ -322,7 +328,7 @@
   #wa-fab{
     position:fixed;bottom:26px;right:26px;z-index:90;width:58px;height:58px;border-radius:50%;
     background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;
-    box-shadow:0 14px 30px -10px rgba(37,211,102,.7);cursor:pointer;animation:pulse 2.4s infinite;
+    box-shadow:0 14px 30px -10px rgba(37,211,102,.7);animation:pulse 2.4s infinite;
   }
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 0 0 16px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
 
