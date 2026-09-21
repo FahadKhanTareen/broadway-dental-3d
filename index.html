@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
 <style>
   :root{
     --teal:#0084c5;
@@ -24,7 +25,11 @@
     --shadow:0 20px 50px -20px rgba(15,23,42,.35);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html.lenis{scroll-behavior:auto !important;}
+  html.lenis, html.lenis body{height:auto;}
+  .lenis.lenis-smooth{scroll-behavior:auto!important;}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}
+  .lenis.lenis-stopped{overflow:hidden;}
   body{
     font-family:'Inter',system-ui,-apple-system,sans-serif;
     background:var(--paper);
@@ -58,6 +63,14 @@
   }
   .btn-primary{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1c1508;box-shadow:0 14px 30px -10px rgba(184,147,74,.55);}
   .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 40px -12px rgba(184,147,74,.7);}
+  @property --beam-angle{syntax:'<angle>';inherits:false;initial-value:0deg;}
+  .beam-btn{position:relative;z-index:0;}
+  .beam-btn:before{
+    content:"";position:absolute;inset:-3px;z-index:-1;border-radius:100px;
+    background:conic-gradient(from var(--beam-angle),transparent 0deg,transparent 300deg,#fff 335deg,var(--gold-light) 350deg,transparent 360deg);
+    animation:beamSpin 2.6s linear infinite;
+  }
+  @keyframes beamSpin{to{--beam-angle:360deg;}}
   .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);}
   .btn-ghost:hover{background:rgba(255,255,255,.18);transform:translateY(-3px);}
   .btn-dark{background:var(--navy);color:#fff;}
@@ -160,9 +173,18 @@
   .timeline-node p{font-size:12.8px;color:#64748b;line-height:1.5;max-width:220px;}
   @media(max-width:700px){.timeline-track{flex-direction:column;gap:26px;}.timeline-track:before{display:none;}.timeline-node{padding-left:24px;padding-top:0;}.timeline-node .dot{top:4px;left:0;}}
 
-  /* ---------- CARD 3D TILT ---------- */
-  .tilt{transition:transform .12s ease-out,box-shadow .3s ease;will-change:transform;}
+  /* ---------- CARD 3D TILT + SPOTLIGHT ---------- */
+  .tilt{position:relative;overflow:hidden;transition:transform .12s ease-out,box-shadow .3s ease;will-change:transform;}
   .tilt-inner{position:relative;}
+  .tilt:before{
+    content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;
+    opacity:0;transition:opacity .35s ease;
+    background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(0,132,197,.13), transparent 62%);
+  }
+  #doctors .tilt:before{
+    background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.16), transparent 62%);
+  }
+  .tilt:hover:before{opacity:1;}
 
   /* ---------- CONSULT ---------- */
   #consult{background:linear-gradient(180deg,#fff,var(--paper));}
@@ -263,10 +285,16 @@
     display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;
     box-shadow:0 16px 34px -18px rgba(15,23,42,.4);
   }
-  .gal-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.7));}
-  .gal-card .gtag{position:relative;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;opacity:.8;margin-bottom:6px;color:var(--gold-light);}
-  .gal-card h5{position:relative;font-family:'Fraunces',serif;font-size:19px;font-weight:500;}
-  .gal-card .gicon{position:absolute;top:18px;right:20px;font-family:'Fraunces',serif;font-size:14px;color:rgba(255,255,255,.65);letter-spacing:.02em;}
+  .gal-card:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.7));}
+  .gal-card:after{
+    content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;
+    opacity:0;transition:opacity .35s ease;
+    background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.18), transparent 62%);
+  }
+  .gal-card:hover:after{opacity:1;}
+  .gal-card .gtag{position:relative;z-index:2;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;opacity:.8;margin-bottom:6px;color:var(--gold-light);}
+  .gal-card h5{position:relative;z-index:2;font-family:'Fraunces',serif;font-size:19px;font-weight:500;}
+  .gal-card .gicon{position:absolute;z-index:2;top:18px;right:20px;font-family:'Fraunces',serif;font-size:14px;color:rgba(255,255,255,.65);letter-spacing:.02em;}
 
   /* ---------- LOCATION ---------- */
   #location{background:var(--paper);}
@@ -430,7 +458,7 @@
       <h1 class="word-heading">Gentle, modern &amp;<br><span class="no-split">empathetic</span> dental care<br>in DHA Phase 6</h1>
       <p>Led by <b>Dr. Faizan Haroon</b> &amp; <b>Dr. Abir</b> — painless rotary root canals, fear‑free pediatric care, wisdom tooth removals, and precision smile aesthetics, in a spotless clinical environment.</p>
       <div class="hero-actions">
-        <a href="#booking"><button class="btn btn-primary">Book an Appointment<span class="btn-arrow">→</span></button></a>
+        <a href="#booking"><button class="btn btn-primary beam-btn">Book an Appointment<span class="btn-arrow">→</span></button></a>
         <a href="#consult"><button class="btn btn-ghost">Free Smile Assessment</button></a>
       </div>
       <div class="hero-badge" style="margin-bottom:0;">⭐ <b>4.7</b>&nbsp;rating · 40 verified Google reviews</div>
@@ -440,7 +468,7 @@
         <div class="hero-stat"><b>100%</b><span>Autoclave Sterilized</span></div>
       </div>
     </div>
-    <div class="hero-tooth" id="heroTooth">
+    <div class="hero-tooth" id="heroTooth" data-lenis-prevent>
       <video id="heroToothVideo" muted playsinline preload="auto" src="assets/brand/tooth-3d-scrub.mp4"></video>
       <div class="hero-tooth-hint">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5a2 2 0 1 0-2 2M8 4l-2 2 2 2M16 4l2 2-2 2"/><path d="M13 5c-4 0-7 3-7 7 0 3 2 5 5 6M13 5c4 0 7 3 7 7 0 3-2 5-5 6"/></svg>
@@ -695,18 +723,40 @@
 
 <a id="wa-fab" href="https://wa.me/923024598459" target="_blank" rel="noopener" title="WhatsApp Us">💬</a>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
+/* ===================== SMOOTH SCROLL (Lenis) ===================== */
+(function(){
+  try{
+    if(typeof Lenis==='undefined') return;
+    const lenis=new Lenis({
+      anchors:true,
+      autoRaf:true,
+      duration:1.4,
+      easing:(t)=>Math.min(1, 1.001 - Math.pow(2, -10*t)),
+      smoothWheel:true,
+      wheelMultiplier:0.9,
+      touchMultiplier:1.4,
+      syncTouch:false,
+    });
+    window.__lenis=lenis;
+    // Keep it paused while the enter gate owns scroll-locking.
+    if(document.body.classList.contains('gate-active')) lenis.stop();
+    document.addEventListener('gateExited', ()=>lenis.start());
+  }catch(err){}
+})();
+
 /* ===================== ENTER GATE ===================== */
 (function(){
   try{
     const gate=document.getElementById('enter-gate');
-    if(!gate) return;
+    if(!gate){ if(window.__lenis) window.__lenis.start(); return; }
 
     // Skip the gate on repeat visits within the same browser tab session.
     let alreadyEntered=false;
     try{ alreadyEntered = sessionStorage.getItem('bwd_entered')==='1'; }catch(e){}
-    if(alreadyEntered){ gate.remove(); document.body.classList.remove('gate-active'); return; }
+    if(alreadyEntered){ gate.remove(); document.body.classList.remove('gate-active'); if(window.__lenis) window.__lenis.start(); return; }
 
     const fill=document.getElementById('gateBarFill');
     const pct=document.getElementById('gatePercent');
@@ -747,6 +797,7 @@
     const g=document.getElementById('enter-gate');
     if(g) g.remove();
     document.body.classList.remove('gate-active');
+    if(window.__lenis) window.__lenis.start();
   }
 })();
 
@@ -1054,10 +1105,12 @@ document.querySelectorAll('.tilt').forEach(card=>{
   card.style.perspective='800px';
   card.addEventListener('mousemove',(e)=>{
     const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-0.5;
-    const y=(e.clientY-r.top)/r.height-0.5;
+    const px=e.clientX-r.left, py=e.clientY-r.top;
+    const x=px/r.width-0.5, y=py/r.height-0.5;
     card.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) scale(1.02)`;
     card.style.boxShadow=`${-x*30}px ${y*30+18}px 50px -20px rgba(15,23,42,.35)`;
+    card.style.setProperty('--mx', px+'px');
+    card.style.setProperty('--my', py+'px');
   });
   card.addEventListener('mouseleave',()=>{
     card.style.transform='rotateY(0) rotateX(0) scale(1)';
