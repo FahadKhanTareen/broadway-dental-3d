@@ -25,11 +25,6 @@
     --shadow:0 20px 50px -20px rgba(15,23,42,.35);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html.lenis{scroll-behavior:auto !important;}
-  html.lenis, html.lenis body{height:auto;}
-  .lenis.lenis-smooth{scroll-behavior:auto!important;}
-  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}
-  .lenis.lenis-stopped{overflow:hidden;}
   body{
     font-family:'Inter',system-ui,-apple-system,sans-serif;
     background:var(--paper);
@@ -886,12 +881,15 @@ html{-webkit-text-size-adjust:100%}body{min-width:0}img,video,canvas,svg{max-wid
 (function(){
   try{
     if(typeof Lenis==='undefined') return;
+    // Config per darkroomengineering/lenis README's recommended no-code snippet,
+    // minus autoToggle (conflicts with our own gate-driven stop/start below —
+    // it left the instance permanently stopped after the gate closed) and
+    // naiveDimensions (docs flag it as a perf cost we don't need).
     const lenis=new Lenis({
-      anchors:true,
       autoRaf:true,
-      duration:1.2,
-      easing:(t)=>Math.min(1, 1.001 - Math.pow(2, -10*t)),
-      smoothWheel:true,
+      anchors:true,
+      allowNestedScroll:true,
+      stopInertiaOnNavigate:true,
     });
     window.__lenis=lenis;
     // Keep it paused while the enter gate owns scroll-locking.
